@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Five-minute beta guide / Panduan uji beta
+    url: https://github.com/yottt-1/qr-cepat/blob/main/docs/BETA.md
+    about: Test tasks and privacy precautions.

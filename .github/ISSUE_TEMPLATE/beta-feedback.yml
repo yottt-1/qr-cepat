@@ -1,0 +1,57 @@
+name: Beta feedback / Umpan balik beta
+description: Share a five-minute test, including installation failures.
+title: "[Beta] "
+body:
+  - type: markdown
+    attributes:
+      value: "This report is PUBLIC. No passwords, tokens, private URLs, or sensitive QR images. Indonesian and English welcome."
+  - type: input
+    id: environment
+    attributes:
+      label: Mac, macOS, and app version
+      placeholder: "MacBook Air M1, macOS 15.x, QR Cepat 0.1.0-beta.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: installation
+    attributes:
+      label: Installation / Instalasi
+      options:
+        - "Installed and opened"
+        - "Blocked by macOS or failed to open"
+        - "Built from source"
+    validations:
+      required: true
+  - type: dropdown
+    id: scan
+    attributes:
+      label: Did the saved QR scan correctly?
+      options:
+        - "Yes, exact content"
+        - "No"
+        - "Not tested"
+    validations:
+      required: true
+  - type: textarea
+    id: results
+    attributes:
+      label: What worked or failed? / Apa yang berhasil atau gagal?
+      description: "Mention copy/paste, sizes, colors, scanner/device, and harmless reproduction steps. Mark untested tasks explicitly."
+    validations:
+      required: true
+  - type: dropdown
+    id: reuse
+    attributes:
+      label: Would you use this again? / Akan dipakai lagi?
+      options:
+        - "Yes"
+        - "Maybe"
+        - "No"
+    validations:
+      required: true
+  - type: textarea
+    id: improvement
+    attributes:
+      label: Why, and what single improvement matters most?
+    validations:
+      required: true
