@@ -2,24 +2,27 @@
 
 **Recruitment target: 10–20 volunteers. No participants or responses are claimed yet.**
 
-Need: Apple Silicon Mac with macOS 13+, and optionally a phone camera.
+Need: Apple Silicon Mac with macOS 13+, or a Windows 10 22H2 / Windows 11 x64
+computer, and optionally a phone camera.
 Get the [beta release](https://github.com/yottt-1/qr-cepat/releases) and read the
 signing/security notice in the README before installing.
 
 ## Tasks / Tugas
 
-1. **Install / Instal:** unzip, drag to Applications, and launch. Report any macOS
-   warning or failure. Do not disable system security.
+1. **Install / Instal:** Mac: unzip, drag to Applications, and launch.
+   Windows: extract the full portable ZIP and open QR Cepat.exe. Report any
+   operating-system warning or failure. Do not disable system security.
 2. **Generate / Buat:** paste `https://example.com`, save 512 px PNG, then scan it
    with a phone. Verify the destination before opening it.
-3. **Copy / Salin:** press ⌘⇧C and paste into an image-capable app such as Notes.
+3. **Copy / Salin:** press ⌘⇧C (Mac) or Ctrl+Shift+C (Windows), then paste into an
+   image-capable app such as Notes or Paint.
 4. **Recover / Pulihkan:** choose white QR on white background. Export should be
    unavailable and an error should explain recovery. Click Reset and retry.
 5. **Repeat / Ulangi:** try 256/1024 px, another correction level, light/dark mode,
    and this safe sample: `Halo Indonesia — café 日本語 😀`.
 
-Optional: test a physical print, keyboard-only navigation, VoiceOver, and Reduce
-Motion. State "not tested" for anything you did not try.
+Optional: test a physical print, keyboard-only navigation, VoiceOver/Narrator,
+high contrast, and display scaling. State "not tested" for anything you did not try.
 
 ## Feedback
 
@@ -42,6 +45,6 @@ repeat-use intent, and recurring problems. No telemetry is added to the app.
 Fix install/scan failures before expanding platform support. Do not infer demand
 from GitHub stars alone.
 
-Suggested mix: general Mac users, designers/print users, and technical users.
+Suggested mix: general Mac/Windows users, designers/print users, and technical users.
 Invite people only where project sharing is allowed. No paid campaign or automatic
 messaging is attached to this repository.

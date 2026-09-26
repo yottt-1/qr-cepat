@@ -17,6 +17,11 @@
 
 ## Platforms
 
-No Windows/Linux support in this beta. SwiftUI/AppKit/Core Image are macOS-specific.
-Choose a cross-platform approach after validating demand and maintenance effort.
-Intel builds need runtime testing before a supported download is advertised.
+Windows x64 now has a separate native WPF edition, requested after the initial
+Mac beta. Its portable build includes .NET and uses QRCoder for offline encoding.
+Validate installation, phone scanning, clipboard interoperability, Narrator,
+high contrast, and real per-monitor DPI on Windows 10/11 devices.
+
+Linux remains deferred. Windows ARM64 and Intel Mac downloads require their own
+runtime testing before they are advertised as supported. Mac stays on
+SwiftUI/AppKit/Core Image.

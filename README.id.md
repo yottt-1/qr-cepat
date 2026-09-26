@@ -1,22 +1,35 @@
 # QR Cepat
 
-**Tempel. Buat QR. Salin. Utilitas QR offline untuk macOS.**
+**Tempel. Buat QR. Salin. Utilitas QR offline untuk macOS dan Windows.**
 
 [English](README.md) · [Unduh beta](https://github.com/yottt-1/qr-cepat/releases) · [Ikut uji beta](docs/BETA.md) · [Lisensi MIT](LICENSE)
 
 ![Tampilan QR Cepat](docs/screenshot-light.png)
 
-QR Cepat membuat QR dari teks dan tautan langsung di Mac. Tanpa akun, server,
+QR Cepat membuat QR dari teks dan tautan langsung di komputer Anda. Tanpa akun, server,
 pelacakan, langganan, atau layanan pengalihan tautan. Antarmuka berbahasa Indonesia.
 
 ## Instalasi
+
+### Windows — 0.2.0-beta.1
+
+Unduh ZIP portable dari artifact [build Windows yang berhasil](https://github.com/yottt-1/qr-cepat/actions/workflows/windows.yml) (perlu login GitHub), ekstrak
+**seluruh isinya**, lalu buka **QR Cepat.exe**. Runtime .NET sudah disertakan;
+tidak perlu memasang .NET atau menjalankan aplikasi sebagai administrator.
+
+Target: Windows 10 22H2 / Windows 11, Intel/AMD 64-bit. Versi Windows ARM64 dan
+Linux belum tersedia. Aplikasi beta belum ditandatangani Authenticode sehingga
+SmartScreen dapat menampilkan peringatan penerbit belum dikenal.
+[Panduan dan pengujian Windows](docs/WINDOWS.md).
+
+### macOS — 0.1.0-beta.1
 
 1. Unduh `QR-Cepat-v0.1.0-beta.1-macOS-arm64.zip` di halaman Releases.
 2. Ekstrak ZIP, lalu pindahkan **QR Cepat.app** ke **Applications**.
 3. Buka, ganti teks contoh, lalu pilih **Simpan PNG** atau **Salin**.
 
 **Kebutuhan:** macOS 13+, Apple Silicon (M1 atau lebih baru). Unduhan beta ini
-belum diuji pada Intel Mac. Belum ada dukungan Windows/Linux.
+belum diuji pada Intel Mac. Windows menggunakan aplikasi terpisah di atas.
 
 **Penting:** aplikasi beta ditandatangani secara ad-hoc dan **belum dinotarisasi
 Apple**. macOS mungkin memblokirnya. Tanda tangan ini bukan Developer ID; checksum
@@ -38,9 +51,13 @@ shasum -a 256 -c SHA256SUMS
 - Empat tingkat koreksi error dan pilihan warna QR/latar.
 - Modul QR diskalakan dalam piksel utuh dengan margin minimal empat modul.
 - Penolakan warna berkontras rendah, QR terbalik, dan ukuran terlalu padat.
-- Salin PNG/TIFF ke clipboard (**⌘⇧C**) atau simpan PNG (**⌘S**).
+- Mac: salin PNG/TIFF (**⌘⇧C**) atau simpan PNG (**⌘S**).
+- Windows: salin PNG/bitmap (**Ctrl+Shift+C**) atau simpan PNG (**Ctrl+S**).
 - Tampilan native light/dark dan dukungan reduced motion.
-- Tanpa dependensi pihak ketiga saat aplikasi berjalan.
+- Mac memakai SwiftUI/Core Image; Windows memakai WPF/QRCoder, semuanya lokal.
+
+Warna di Windows diisi sebagai kode hex `#RRGGBB`; tombol Reset warna
+mengembalikan hitam-putih. Pemilih warna native tersedia di versi Mac.
 
 ## Keandalan dan privasi
 
@@ -56,6 +73,10 @@ dengan pemindai serta ukuran cetak/tampilan yang akan digunakan. Kamera ponsel,
 cetakan fisik, VoiceOver, dan versi macOS lama masih perlu pengujian pengguna beta.
 
 ## Build sendiri
+
+Untuk Windows gunakan SDK .NET 10 dan ikuti [panduan Windows](docs/WINDOWS.md).
+
+### macOS
 
 Perlu toolchain Swift 6 dan macOS SDK (Xcode atau Command Line Tools yang sesuai).
 
@@ -74,7 +95,7 @@ mandiri dan decoder Vision; tidak memerlukan XCTest. Lihat
 
 ## Bantu uji beta
 
-Target awal adalah **10–20 relawan pengguna Mac**, bukan jumlah pengguna yang
+Target awal adalah **10–20 relawan pengguna Mac dan Windows**, bukan jumlah pengguna yang
 sudah bergabung. Ikuti [panduan lima menit](docs/BETA.md), lalu kirim
 [feedback](https://github.com/yottt-1/qr-cepat/issues/new?template=beta-feedback.yml).
 Issue bersifat publik: jangan sertakan password, token, tautan pribadi, atau
