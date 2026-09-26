@@ -8,3 +8,7 @@ Resources/AppIcon.icns
 docs/qa-*.png
 docs/demo-unicode.png
 docs/demo-color.png
+**/bin/
+**/obj/
+Windows/icon-256.png
+.dotnet-local/
