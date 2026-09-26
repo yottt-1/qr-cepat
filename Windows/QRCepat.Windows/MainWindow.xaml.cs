@@ -26,12 +26,30 @@ public partial class MainWindow : Window
         CopyCommand = new(Copy, () => rendered != null);
         SaveCommand = new(Save, () => rendered != null);
         InitializeComponent();
+        ApplyPalette();
+        SystemEvents.UserPreferenceChanged += PreferencesChanged;
         DataContext = this;
         debounce.Tick += async (_, _) => { debounce.Stop(); await RefreshAsync(); };
         feedbackTimer.Tick += (_, _) => { feedbackTimer.Stop(); Feedback.Text = ""; };
-        Closed += (_, _) => { revision++; ready = false; debounce.Stop(); feedbackTimer.Stop(); };
+        Closed += (_, _) => { revision++; ready = false; debounce.Stop(); feedbackTimer.Stop(); SystemEvents.UserPreferenceChanged -= PreferencesChanged; };
         ready = true;
         Loaded += (_, _) => { ContentEditor.Focus(); Invalidate(); };
+    }
+
+    private void PreferencesChanged(object sender, UserPreferenceChangedEventArgs e) =>
+        Dispatcher.InvokeAsync(() => { if (ready) ApplyPalette(); });
+
+    private void ApplyPalette(bool? darkOverride = null)
+    {
+        bool dark = darkOverride ?? (Registry.GetValue(
+            @"HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize",
+            "AppsUseLightTheme", 1) is int value && value == 0);
+        Brush Solid(string hex) => new SolidColorBrush((Color)ColorConverter.ConvertFromString(hex));
+        bool contrast = SystemParameters.HighContrast;
+        Resources["CanvasBrush"] = contrast ? SystemColors.ControlBrush : Solid(dark ? "#18181D" : "#F3F3F7");
+        Resources["SurfaceBrush"] = contrast ? SystemColors.WindowBrush : Solid(dark ? "#222228" : "#FFFFFF");
+        Resources["TextBrush"] = contrast ? SystemColors.WindowTextBrush : Solid(dark ? "#F4F4F8" : "#202027");
+        Resources["BorderBrush"] = contrast ? SystemColors.WindowTextBrush : Solid(dark ? "#53535E" : "#D6D6DF");
     }
 
     private void InputChanged(object sender, RoutedEventArgs e) { if (ready) Invalidate(); }

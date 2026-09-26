@@ -54,6 +54,7 @@ public partial class MainWindow
 #pragma warning disable WPF0001
             ThemeMode = mode;
 #pragma warning restore WPF0001
+            ApplyPalette(name == "dark");
             await Task.Delay(400);
             UpdateLayout();
             Screenshot(Path.Combine(directory, $"windows-{name}.png"), 1);
@@ -62,7 +63,8 @@ public partial class MainWindow
         Width = MinWidth; Height = MinHeight;
         await Task.Delay(100); UpdateLayout();
         Screenshot(Path.Combine(directory, "windows-minimum.png"), 1);
-        Check(SaveButton.ActualWidth > 70 && SaveButton.ActualHeight >= 44, "Export controls clipped");
+        Check(SaveButton.ActualWidth > 70 && SaveButton.ActualHeight >= 44,
+            $"Export controls clipped: {SaveButton.ActualWidth} x {SaveButton.ActualHeight}");
         Clear_Click(this, new RoutedEventArgs());
         Check(rendered == null && !SaveCommand.CanExecute(null) && !CopyCommand.CanExecute(null), "Empty input export allowed");
         Check(EmptyState.Visibility == Visibility.Visible, "Empty state missing");
