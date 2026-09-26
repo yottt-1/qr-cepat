@@ -57,6 +57,9 @@ an explicit self-test argument on an isolated runner. It checks the live
 preview, stale-export prevention, clipboard formats, PNG decode, invalid-color
 recovery, size changes, empty state, and minimum-window controls, and captures
 light/dark screenshots. QA artifacts are uploaded separately from the app.
+An independent Windows decoder then reads the saved PNG and all five screenshots
+to check that the displayed QR is present and decodes to the expected content.
+CI captures use software rendering for reproducible headless screenshots.
 
 Renderer tests also run on macOS/Linux with .NET 10. WPF execution, clipboard,
 and the save dialog require Windows; cross-compilation alone cannot verify them.

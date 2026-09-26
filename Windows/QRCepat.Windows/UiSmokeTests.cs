@@ -57,6 +57,8 @@ public partial class MainWindow
             ApplyPalette(name == "dark");
             await Task.Delay(400);
             UpdateLayout();
+            Preview.InvalidateVisual();
+            await Dispatcher.InvokeAsync(() => { }, System.Windows.Threading.DispatcherPriority.ApplicationIdle);
             Screenshot(Path.Combine(directory, $"windows-{name}.png"), 1);
             Screenshot(Path.Combine(directory, $"windows-{name}-2x.png"), 2);
         }
@@ -75,9 +77,13 @@ public partial class MainWindow
 
     private void Screenshot(string path, double scale)
     {
-        var bitmap = new RenderTargetBitmap((int)(ActualWidth * scale), (int)(ActualHeight * scale),
+        var content = (FrameworkElement)Content;
+        var bitmap = new RenderTargetBitmap((int)(content.ActualWidth * scale), (int)(content.ActualHeight * scale),
             96 * scale, 96 * scale, PixelFormats.Pbgra32);
-        bitmap.Render(this);
+        var drawing = new DrawingVisual();
+        using (var context = drawing.RenderOpen())
+            context.DrawRectangle(new VisualBrush(content), null, new Rect(0, 0, content.ActualWidth, content.ActualHeight));
+        bitmap.Render(drawing);
         var encoder = new PngBitmapEncoder();
         encoder.Frames.Add(BitmapFrame.Create(bitmap));
         using var file = File.Create(path); encoder.Save(file);

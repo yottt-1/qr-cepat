@@ -10,6 +10,10 @@
    <Setter Property="MinHeight" Value="44"/><Setter Property="Padding" Value="16,8"/>
    <Setter Property="HorizontalAlignment" Value="Stretch"/>
   </Style>
+  <Style x:Key="PrimaryAction" TargetType="Button" BasedOn="{StaticResource ActionButton}">
+   <Setter Property="Background" Value="#4F46E5"/><Setter Property="Foreground" Value="White"/>
+   <Setter Property="BorderBrush" Value="#4F46E5"/>
+  </Style>
  </Window.Resources>
  <Window.InputBindings>
   <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveCommand}"/>
@@ -83,7 +87,7 @@
      <Grid Grid.Row="3">
       <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="12"/><ColumnDefinition/></Grid.ColumnDefinitions>
       <Button x:Name="CopyButton" Style="{StaticResource ActionButton}" Content="Salin" Command="{Binding CopyCommand}" ToolTip="Salin gambar (Ctrl+Shift+C)"/>
-      <Button x:Name="SaveButton" Style="{StaticResource ActionButton}" Grid.Column="2" Content="Simpan PNG" Command="{Binding SaveCommand}" FontWeight="SemiBold" ToolTip="Simpan PNG (Ctrl+S)"/>
+      <Button x:Name="SaveButton" Style="{StaticResource PrimaryAction}" Grid.Column="2" Content="Simpan PNG" Command="{Binding SaveCommand}" FontWeight="SemiBold" ToolTip="Simpan PNG (Ctrl+S)"/>
      </Grid>
     </Grid>
    </Border>

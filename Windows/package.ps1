@@ -10,6 +10,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw "Windows publish failed" }
     Copy-Item LICENSE dist/windows-x64/QR-Cepat-LICENSE.txt
     Copy-Item Windows/THIRD-PARTY-NOTICES.txt dist/windows-x64/
+    Copy-Item Windows/DOTNET-THIRD-PARTY-NOTICES.txt dist/windows-x64/
     Copy-Item Windows/README.txt dist/windows-x64/
     $archive = "dist/QR-Cepat-$Version-Windows-x64.zip"
     if (Test-Path $archive) { throw "Archive already exists: $archive" }

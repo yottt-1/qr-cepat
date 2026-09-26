@@ -7,6 +7,10 @@ public partial class App : Application
     protected override async void OnStartup(StartupEventArgs e)
     {
         base.OnStartup(e);
+        // Headless CI captures use software rendering to avoid GPU surface
+        // caching in RenderTargetBitmap. Normal startup keeps WPF's default.
+        if (e.Args.Length == 2 && e.Args[0] == "--self-test")
+            System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
         var window = new MainWindow();
         MainWindow = window;
         window.Show();

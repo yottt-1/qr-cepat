@@ -21,6 +21,8 @@ jobs:
           dotnet restore Windows/QRCepat.Tests --locked-mode
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           dotnet restore Windows/QRCepat.Windows --locked-mode
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          dotnet restore Windows/QRCepat.VisualTests --locked-mode
       - name: Decode PNGs and validate renderer
         run: dotnet run --project Windows/QRCepat.Tests -c Release --no-restore
       - name: Publish portable Windows x64
@@ -37,6 +39,8 @@ jobs:
           if ($process.ExitCode -ne 0) { throw "Windows UI test exited $($process.ExitCode)" }
           if (-not (Test-Path "$results/results.txt")) { throw "UI test did not produce results" }
           Get-Content "$results/results.txt"
+      - name: Decode the exported PNG and rendered UI screenshots
+        run: dotnet run --project Windows/QRCepat.VisualTests -c Release --no-restore -- dist/windows-qa
       - name: Upload portable download
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
