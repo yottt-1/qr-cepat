@@ -16,6 +16,7 @@ try {
     if (Test-Path $archive) { throw "Archive already exists: $archive" }
     Compress-Archive -Path dist/windows-x64/* -DestinationPath $archive
     $digest = (Get-FileHash $archive -Algorithm SHA256).Hash.ToLowerInvariant()
-    "$digest  $(Split-Path $archive -Leaf)" | Set-Content "dist/SHA256SUMS-Windows" -Encoding ascii
+    $checksumPath = Join-Path $PWD "dist/SHA256SUMS-Windows"
+    [System.IO.File]::WriteAllText($checksumPath, "$digest  $(Split-Path $archive -Leaf)" + [char]10, [System.Text.UTF8Encoding]::new($false))
     Write-Output "Created $archive"
 } finally { Pop-Location }

@@ -13,7 +13,7 @@ pelacakan, langganan, atau layanan pengalihan tautan. Antarmuka berbahasa Indone
 
 ### Windows — 0.2.0-beta.1
 
-Unduh ZIP portable dari artifact CI Windows atau rilis beta Windows, ekstrak
+Unduh ZIP portable dari artifact [build Windows yang berhasil](https://github.com/yottt-1/qr-cepat/actions/workflows/windows.yml) (perlu login GitHub), ekstrak
 **seluruh isinya**, lalu buka **QR Cepat.exe**. Runtime .NET sudah disertakan;
 tidak perlu memasang .NET atau menjalankan aplikasi sebagai administrator.
 

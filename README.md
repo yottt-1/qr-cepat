@@ -21,7 +21,7 @@ screen recording. [Light screenshot](docs/screenshot-light.png) · [Dark screens
 
 The Windows edition is a native WPF application with the same core workflow:
 live preview, four correction levels, colors, exact PNG sizes, copy, and save.
-Download the portable ZIP from the Windows CI artifact or Windows beta release,
+Download the portable ZIP artifact from a successful [Windows build](https://github.com/yottt-1/qr-cepat/actions/workflows/windows.yml) (GitHub login required),
 extract **all files**, then open **QR Cepat.exe**. The .NET runtime is bundled;
 no separate runtime installation or administrator access is required.
 

@@ -2,7 +2,9 @@
 
 ## Install / Instalasi
 
-Download the Windows x64 ZIP, extract all files to a folder, and open
+Open a successful [Windows workflow run](https://github.com/yottt-1/qr-cepat/actions/workflows/windows.yml)
+and download the QR-Cepat-Windows-x64 artifact (GitHub login required).
+Download the Windows x64 ZIP inside it, extract all files to a folder, and open
 **QR Cepat.exe**. No installer, administrator permission, or separate .NET
 installation is needed. The runtime is bundled with the executable.
 
